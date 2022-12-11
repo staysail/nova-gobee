@@ -25,10 +25,10 @@ highly recommend updating to Nova 10.4 or better.
 
 ## 📸 Screenshots 📸
 
-![](https://raw.githubusercontent.com/staysail/nova-cdragon/main/screenshot1.png)
-![](https://raw.githubusercontent.com/staysail/nova-cdragon/main/screenshot2.png)
-![](https://raw.githubusercontent.com/staysail/nova-cdragon/main/screenshot3.png)
-![](https://raw.githubusercontent.com/staysail/nova-cdragon/main/screenshot4.png)
+![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot1.png)
+![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot2.png)
+![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot3.png)
+![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot4.png)
 
 ## Why Another Go Extension?
 
