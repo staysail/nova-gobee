@@ -16,9 +16,8 @@ highly recommend updating to Nova 10.4 or better.
 - Indentation (automatic, somewhat limited)
 - Symbols
 - Code Folding
-- **REST ARE TODO**
-- Format Selection or File, including On Save
-- Jump to Definition, Declaration, Implementation, Type Definition
+- Format File, including On Save
+- Jump to Definition, Implementation, Type Definition
 - Find References
 - Find Symbol
 - Rename Symbol
@@ -50,15 +49,27 @@ the other ones work.
 
 ## ⚙️ Language Server Integration ⚙️
 
-TBD.
+This extension makes use of _gopls_, which is the "official" language server
+from the Go team. By default we will attempt to install it in the extension's
+private directory, as `gopls`.
 
 ## 🛡️ Security Considerations 🛡️
 
-TBD.
+This extension uses the network to check for the latest version of _gopls_ (the language
+server) using the GitHub releases API. It also will indirectly use the network when it
+tries to install this using the `go install` command.
+
+The _gopls_ server will be installed in a private directory by default, but it is possible
+to configure a different location. In any event, we do execute that command for the
+language server, and the language server may itself perform additional actions -- see the
+source code for _gopls_ if you want to know more.
+
+It is possible to disable the use of _gopls_, and instead rely only on the syntax
+features from Tree-sitter. That will disable much of the useful functionality, but
+enough remains (highlighting, local symbol resolution, folds, and indentation) to still
+be worthwhile.
 
 ## 🔮 Future Directions 🔮
-
-TBD.
 
 Tasks to build using go.
 
@@ -66,9 +77,11 @@ Better support for go modules.
 
 Debugging via delve.
 
+Support for larger refactoring - such as package renaming.
+
 ## 🐜 Bugs 🐜
 
-- WE ARE JUST STARTING OUT. Expect problems.
+- This is a brand new extension. Expect problems.
 
 - Symbol renames can mess up highlighting. Make a subsequent change to refresh the
   tree-sitter grammar's view of things. This appears to be a Nova defect.
@@ -96,15 +109,16 @@ following copyright notice:
 
 > Copyright (c) 2020 Cameron Little
 
-This work has some code from [Ben Beshara][1]'s original [C++ ClangD extension][2].
+This work includes code from [Ben Beshara][1]'s original [C++ ClangD extension][2].
 That extension carried the following license declaration in its manifest (which
 we have preserved):
 
 > "license": "MIT",
 
+[1]: https://benbeshara.id.au/ "Ben Beshara"
+[2]: https://github.com/benbeshara/nova-cplusplus
 [3]: https://tree-sitter.github.io/tree-sitter/ "Tree-sitter web site"
-[4]: https://github.com/staysail/nova-c "Tree-sitter grammar for C"
 [5]: https://brew.sh "Homebrew package manager"
 [6]: https://github.com/apexskier "Cameron Little's GitHub page"
 [7]: https://github.com/apexskier/nova-typescript "TypeScript Extension for Nova"
-[8]: https://github.com/staysail/nova-cdragon/blob/main/LICENSE.md "MIT License"
+[8]: https://github.com/staysail/nova-goby/blob/main/LICENSE.md "MIT License"
