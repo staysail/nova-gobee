@@ -36,13 +36,6 @@
         }
       },
       {
-        "title": "Jump To Declaration",
-        "command": "goby.jumpToDeclaration",
-        "filters": {
-          "syntaxes": ["go"]
-        }
-      },
-      {
         "title": "Jump To Type Definition",
         "command": "goby.jumpToTypeDefinition",
         "filters": {
@@ -76,13 +69,6 @@
         "title": "Format File",
         "command": "goby.formatFile",
         "shortcut": "opt-shift-f",
-        "filters": {
-          "syntaxes": ["go"]
-        }
-      },
-      {
-        "title": "Format Selection",
-        "command": "go.formatSelection",
         "filters": {
           "syntaxes": ["go"]
         }
