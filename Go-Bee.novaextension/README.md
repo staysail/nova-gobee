@@ -86,6 +86,13 @@ Support for larger refactoring - such as package renaming.
 
 - Some things that should be code actions are not.
 
+- Symbol queries can wind up returning some rather specious results. They will
+  appear at the end of the results. This seems to be an issue with _gopls_.
+
+- _gopls_ sometimes appears to crash during start up -- perhaps if restarting the
+  extension too quickly. Please let us know if you run into this. (Restarting the server
+  manually should work.)
+
 ## 🌐 Localizations 🌐
 
 If you'd like to help with localizing this extension, please submit an issue or
