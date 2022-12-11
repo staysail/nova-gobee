@@ -29,6 +29,7 @@ highly recommend updating to Nova 10.4 or better.
 ![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot2.png)
 ![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot3.png)
 ![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot4.png)
+![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot5.png)
 
 ## Why Another Go Extension?
 
@@ -93,7 +94,7 @@ for anyone able to perform the actual translations.
 
 ## ⚖️ Legal Notices ⚖️
 
-Go-By&trade; is a trademark of Staysail Systems, Inc.
+Go-Bee&trade; and the Goby mascot are trademarks of Staysail Systems, Inc.
 
 Copyright &copy; 2022 Staysail Systems, Inc.
 
