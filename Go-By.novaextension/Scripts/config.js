@@ -11,7 +11,7 @@ const keys = {
   lspFlavor: "goby.lsp.flavor",
   lspPath: "goby.lsp.path",
 
-  formatOnSave: "goby.fmt.onSave",
+  formatOnSave: "goby.format.onSave",
   checkForUpdates: "goby.checkForUpdates",
 
   // context keys that don't get written out

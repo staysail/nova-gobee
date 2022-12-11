@@ -28,7 +28,6 @@ async function formatFile(editor) {
       tabSize: editor.tabLength,
       insertSpaces: editor.softTabs,
     },
-    // TBD: options
   };
   const changes = await Lsp.sendRequest("textDocument/formatting", cmdArgs);
 
@@ -39,10 +38,10 @@ async function formatFile(editor) {
 }
 
 function formatOnSave(editor) {
-  if (editor.document.syntax != "go" && editor.document.syntax != "go") {
+  if (editor.document.syntax != "go") {
     return;
   }
-  if (Prefs.getConfig(Config.lspFlavor == "none")) {
+  if (Prefs.getConfig(Config.lspFlavor) == "none") {
     return;
   }
   const formatOnSave = Prefs.getConfig(Config.formatOnSave);
