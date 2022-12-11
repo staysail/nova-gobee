@@ -140,6 +140,13 @@
           "description": "Path to a custom language server",
           "type": "path",
           "placeholder": "/usr/local/bin/gopls"
+        },
+        {
+          "key": "gobee.go.exec",
+          "title": "Go executable",
+          "type": "path",
+          "description": "Path to the go executable (will search $PATH and common locations if blank.",
+          "placeholder": "/usr/local/go/bin/go"
         }
       ]
     },

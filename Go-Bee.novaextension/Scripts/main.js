@@ -11,7 +11,7 @@ const Navigate = require("./navigate.js");
 const References = require("./references.js");
 const Symbols = require("./symbols.js");
 const Rename = require("./rename.js");
-// const Update = require("./update.js");
+const Update = require("./update.js");
 const State = require("./state.js");
 
 exports.activate = async function () {
@@ -22,7 +22,7 @@ exports.activate = async function () {
   Symbols.register();
   Rename.register();
   Lsp.register();
-  // Update.register();
+  Update.register();
 
   // kick off signal to get everything running
   State.emitter.emit(State.events.onActivate);

@@ -71,12 +71,11 @@ async function startClient() {
       //let ver = Prefs.getConfig(Config.currentGoPls);
       path = nova.path.join(nova.extension.globalStoragePath, `gopls`);
       server = "gopls";
-      path = findGopls();
       break;
     case flavorCustom:
       args = [];
       path = path ?? findGopls();
-      server = "ccls";
+      server = "gopls";
       break;
     default:
       console.error("Unknown LSP flavor. Please submit a bug report.");

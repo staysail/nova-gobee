@@ -10,6 +10,8 @@
 const keys = {
   lspFlavor: "gobee.lsp.flavor",
   lspPath: "gobee.lsp.path",
+  goExec: "gobee.go.exec",
+  goPath: "gobee.gopath",
 
   formatOnSave: "gobee.format.onSave",
   checkForUpdates: "gobee.checkForUpdates",

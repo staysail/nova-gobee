@@ -45,6 +45,9 @@ const catalog = {
   msgSymbolsFoundBody: "msgSymbolsFoundBody",
   msgSymbolsSearch: "msgSymbolsSearch",
   msgSymbol: "msgSymbol",
+  msgNeedGoTitle: "msgNeedGoTitle",
+  msgNeedGoBody: "msgNeedGoBody",
+  msgLspUpdateFailed: "msgLspUpdateFailed",
 };
 
 // default English strings
@@ -70,10 +73,10 @@ values[catalog.msgNewName] = "New name";
 values[catalog.msgCouldNotRenameSym] = "Could not rename symbol";
 values[catalog.msgNewLspTitle] = "Update Available";
 values[catalog.msgNewLspBody] =
-  "An new language server (clangd _VERSION_) update is available. (You have _OLD_VERSION_.)";
+  "An new language server (gopls _VERSION_) update is available. (You have _OLD_VERSION_.)";
 values[catalog.msgMissingLspTitle] = "Server Missing";
 values[catalog.msgMissingLspBody] =
-  "A language server is required for full functionality. Install clangd _VERSION_ now?";
+  "A language server is required for full functionality. Install gopls _VERSION_ now?";
 values[catalog.msgUpToDate] = "Language server is up to date.";
 values[catalog.msgInstall] = "Install";
 values[catalog.msgUpdate] = "Update";
@@ -87,12 +90,15 @@ values[catalog.msgDownloadFailed] = "Download of asset failed.";
 values[catalog.msgReferencesFoundTitle] =
   "Found _COUNT_ References in _FILES_ Files";
 values[catalog.msgReferencesFoundBody] =
-  "Check the References pane in the C-Dragon sidebar to see the results.";
+  "Check the References pane in the Go-Bee sidebar to see the results.";
 values[catalog.msgSymbolsFoundTitle] = "Found _COUNT_ Matches in _FILES_ Files";
 values[catalog.msgSymbolsFoundBody] =
-  "Check the Symbols pane in the C-Dragon sidebar to see the results.";
+  "Check the Symbols pane in the Go-Bee sidebar to see the results.";
 values[catalog.msgSymbolsSearch] = "Search for symbol(s)";
 values[catalog.msgSymbol] = "Symbol";
+values[catalog.msgNeedGoTitle] = "Go not found";
+values[catalog.msgNeedGoBody] = "For full functionality, please install Go.";
+values[catalog.msgLspUpdateFailed] = "Failed to update or install gopls.";
 
 // verify that every entry in the catalog has a matching entry in values
 for (let name in catalog) {
