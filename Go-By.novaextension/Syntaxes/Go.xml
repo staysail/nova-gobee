@@ -35,7 +35,7 @@
     </comments>
 
     <injection>
-        <expression>^(c)$</expression>
+        <expression>^(go)$</expression>
     </injection>
 
     <tree-sitter language="go">
