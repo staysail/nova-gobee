@@ -114,9 +114,9 @@ async function startClient() {
     if (error) {
       console.error(
         "Language encountered error:",
-        error.message || "unknown exit"
+        error.message || error || "unknown exit"
       );
-      Messages.showNotice(Catalog.msgLspStoppedErr, error.message);
+      Messages.showNotice(Catalog.msgLspStoppedErr, error.message ?? error);
     }
   });
 
