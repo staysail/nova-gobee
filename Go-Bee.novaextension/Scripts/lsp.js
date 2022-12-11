@@ -124,7 +124,7 @@ async function startClient() {
     // Start the client
     lspClient.start();
   } catch (err) {
-    Messages.showNotice(Catalog.msgLspDidNotStart, err.message);
+    Messages.showNotice(Catalog.msgLspDidNotStart, err.message ?? err);
     return false;
   }
 
