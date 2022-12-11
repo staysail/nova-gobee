@@ -1,0 +1,216 @@
+{
+  "identifier": "tech.staysail.GoBee",
+  "name": "Go-Bee",
+  "organization": "Staysail Systems",
+  "description": "Go support",
+  "version": "0.0.1",
+  "categories": [
+    "commands",
+    "languages",
+    "formatters",
+    "completions",
+    "issues",
+    "sidebars"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/staysail/nova-gobee",
+  "bugs": "https://github.com/staysail/nova-gobee/issues",
+  "funding": "https://github.com/sponsors/gdamore",
+  "min_runtime": "10.0",
+
+  "main": "main.js",
+
+  "entitlements": {
+    "process": true,
+    "filesystem": "readwrite",
+    "requests": true
+  },
+
+  "commands": {
+    "editor": [
+      {
+        "title": "Jump To Definition",
+        "command": "gobee.jumpToDefinition",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      {
+        "title": "Jump To Type Definition",
+        "command": "gobee.jumpToTypeDefinition",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      {
+        "title": "Jump To Implementation",
+        "command": "gobee.jumpToImplementation",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      { "separator": true },
+      {
+        "title": "Find References",
+        "command": "gobee.findReferences",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      {
+        "title": "Find Symbol",
+        "command": "gobee.findSymbols",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      { "separator": true },
+      {
+        "title": "Format File",
+        "command": "gobee.formatFile",
+        "shortcut": "opt-shift-f",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      {
+        "title": "Rename Symbol",
+        "command": "gobee.renameSymbol",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      { "separator": true },
+      {
+        "title": "Preferences",
+        "command": "gobee.preferences",
+        "syntaxes": ["go"]
+      },
+      {
+        "title": "Extension Preferences",
+        "command": "gobee.extensionPreferences",
+        "syntaxes": ["go"]
+      }
+    ],
+    "extensions": [
+      {
+        "title": "Extension Preferences",
+        "command": "gobee.extensionPreferences"
+      },
+      {
+        "title": "Check for Updates",
+        "command": "gobee.checkForUpdate"
+      },
+      {
+        "title": "Restart Server",
+        "command": "gobee.restartServer",
+        "syntaxes": ["go"]
+      }
+    ]
+  },
+
+  "config": [
+    {
+      "title": "Language Server",
+      "type": "section",
+      "children": [
+        {
+          "key": "gobee.lsp.flavor",
+          "title": "Language server to use",
+          "description": "Which language server to use",
+          "type": "enum",
+          "values": [
+            ["auto", "Automatic gopls"],
+            ["custom", "Custom server"],
+            ["none", "None"]
+          ],
+          "radio": false,
+          "default": "auto"
+        },
+        {
+          "key": "gobee.checkForUpdates",
+          "title": "Check for Updates at Start",
+          "description": "When starting up, should we check to see if a new update of gopls is available?",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "key": "gobee.lsp.path",
+          "title": "Language server Path",
+          "description": "Path to a custom language server",
+          "type": "path",
+          "placeholder": "/usr/local/bin/gopls"
+        }
+      ]
+    },
+    {
+      "title": "Formatting",
+      "type": "section",
+      "children": [
+        {
+          "key": "gobee.format.onSave",
+          "title": "Format on save",
+          "description": "Format Go files automatically when saving.",
+          "type": "boolean",
+          "default": false
+        }
+      ]
+    }
+  ],
+
+  "configWorkspace": [
+    {
+      "key": "gobee.format.onSave",
+      "title": "Format on save",
+      "description": "Format Go files automatically when saving.",
+      "type": "enum",
+      "values": [
+        [null, "Inherit from Global Settings"],
+        [false, "Disable"],
+        [true, "Enable"]
+      ],
+      "default": null
+    }
+  ],
+
+  "sidebars": [
+    {
+      "id": "gobee.sidebar",
+      "name": "Go-Bee",
+      "smallImage": "goby-small",
+      "largeImage": "goby-large",
+      "sections": [
+        {
+          "id": "gobee.sidebar.references",
+          "name": "References",
+          "placeholderText": "Results from \"Find References\" appear here.",
+          "placeholderImage": "goby-large",
+          "headerCommands": [
+            {
+              "title": "Find References",
+              "command": "gobee.findReferences",
+              "tooltip": "Find references to the selected symbol",
+              "image": "search"
+            }
+          ]
+        },
+        {
+          "id": "gobee.sidebar.symbols",
+          "name": "Symbols",
+          "placeholderText": "Results from \"Find Symbols\" appear here.",
+          "placeholderImage": "goby-large",
+          "headerCommands": [
+            {
+              "title": "Find Symbol",
+              "command": "gobee.findSymbols",
+              "tooltip": "Open the Find Symbol dialog",
+              "image": "search"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "activationEvents": ["onLanguage:go"]
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="go">
+    <meta>
+        <name>Go</name>
+        <type>compiled</type>
+        <preferred-file-extension>go</preferred-file-extension>
+    </meta>
+
+    <detectors>
+        <!-- what about go.mod? -->
+        <extension priority="1.0">go</extension>
+    </detectors>
+
+    <indentation>
+        <increase>
+            <expression>\{</expression>
+        </increase>
+        <decrease>
+            <expression>\}</expression>
+        </decrease>
+    </indentation>
+
+    <comments>
+        <single>
+            <expression>//</expression>
+        </single>
+        <multiline>
+            <starts-with>
+                <expression>/*</expression>
+            </starts-with>
+            <ends-with>
+                <expression>*/</expression>
+            </ends-with>
+        </multiline>
+    </comments>
+
+    <injection>
+        <expression>^(go)$</expression>
+    </injection>
+
+    <tree-sitter language="go">
+        <highlights path="go-highlights.scm" />
+        <folds path="go-folds.scm" />
+        <symbols path="go-symbols.scm" />
+    </tree-sitter>
+</syntax>
