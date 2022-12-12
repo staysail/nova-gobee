@@ -12,8 +12,11 @@ const keys = {
   lspPath: "gobee.lsp.path",
   goExec: "gobee.go.exec",
   goPath: "gobee.gopath",
+  buildFlags: "gobee.buildFlags",
 
   formatOnSave: "gobee.format.onSave",
+  localPrefix: "gobee.format.localPrefix",
+  useGofumpt: "gobee.format.gofumpt",
   checkForUpdates: "gobee.checkForUpdates",
 
   // context keys that don't get written out

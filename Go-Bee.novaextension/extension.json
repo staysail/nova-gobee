@@ -3,7 +3,7 @@
   "name": "Go-Bee",
   "organization": "Staysail Systems",
   "description": "Go support",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "categories": [
     "commands",
     "languages",
@@ -177,6 +177,26 @@
         [true, "Enable"]
       ],
       "default": null
+    },
+    {
+      "key": "gobee.format.localPrefix",
+      "title": "Prefix for local packages",
+      "description": "Packages with this prefix are treated as local, and imports of them will be grouped after other imports.",
+      "type": "string",
+      "placeholder": "github.com/organization/repo"
+    },
+    {
+      "key": "gobee.format.gofumpt",
+      "title": "Use gofumpt for formatting",
+      "description": "gofumpt is a stricter, opinionated formatter.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "key": "gobee.buildFlags",
+      "title": "Build Flags",
+      "description": "Build flags - for example to set '-tags'",
+      "type": "stringArray"
     }
   ],
 

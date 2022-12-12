@@ -1,3 +1,7 @@
+## Version 0.0.2
+
+Add tunables for gofumpt and local package formatting, as well as build flags.
+
 ## Version 0.0.1
 
 This is our first "pre"-release. It supports a lot of functionality, although there is

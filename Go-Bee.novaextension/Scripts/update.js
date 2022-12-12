@@ -34,7 +34,6 @@ async function checkForUpdate(force = false) {
 
   let goexec = Prefs.getConfig(Config.goExec);
 
-  console.warn("goexec PREF", goexec);
   if (goexec == null) {
     let dirs = Paths.expandPath();
     dirs = dirs.concat([

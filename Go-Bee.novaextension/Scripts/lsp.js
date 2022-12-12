@@ -82,7 +82,6 @@ async function startClient() {
       return;
   }
 
-  console.warn("LSP PATH", path);
   if (!path || !nova.fs.access(path, nova.fs.X_OK)) {
     if (flavor != flavorAuto) {
       // auto flavor does an update check
@@ -96,9 +95,19 @@ async function startClient() {
     path: path,
     args: args,
   };
+  let initOpts = {};
+  if (Prefs.getConfig(Config.buildFlags)) {
+    initOpts["gopls.build.buildFlags"] = Prefs.getConfig(Config.buildFlags);
+  }
+  if (Prefs.getConfig(Config.localPrefix)) {
+    initOpts["gopls.format.local"] = Prefs.getConfig(Config.localPrefix);
+  }
+  initOpts["gopls.format.gofumpt"] = !!Prefs.getConfig(Config.useGofumpt);
+
   var clientOptions = {
     // The set of document syntaxes for which the server is valid
     syntaxes: ["go"],
+    initializationOptions: initOpts,
   };
 
   lspClient = new LanguageClient(
