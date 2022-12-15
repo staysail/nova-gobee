@@ -9,6 +9,7 @@
 // of the values object as well.
 
 const catalog = {
+  msgNoGo: "msgNoGo",
   msgNoLspClient: "msgNoLspClient",
   msgLspDisabledTitle: "msgLspDisabledTitle",
   msgLspDisabledBody: "msgLspDisabledBody",
@@ -53,6 +54,7 @@ const catalog = {
 // default English strings
 const values = {};
 // fill in the values
+values[catalog.msgNoGo] = "No Go command.";
 values[catalog.msgNoLspClient] = "No LSP client.";
 values[catalog.msgLspDisabledTitle] = "Language server is disabled.";
 values[catalog.msgLspDisabledBody] =
