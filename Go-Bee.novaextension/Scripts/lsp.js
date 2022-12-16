@@ -26,7 +26,10 @@ function stopClient() {
   }
 }
 
-function findGopls() {
+function findTool(toolname) {
+  if (nova.path.isAbsolute(toolname)) {
+    return nova.fs.access(toolname, nova.fs.X_OK) ? toolname : null;
+  }
   let gopath = nova.environment["GOPATH"];
   let dirs = [];
   if (gopath) {
@@ -39,7 +42,7 @@ function findGopls() {
     "/usr/local/go/bin",
     "/usr/bin",
   ]);
-  let paths = Paths.findProgram(dirs, ["gopls"]);
+  let paths = Paths.findProgram(dirs, [toolname]);
   if (paths.length > 0) {
     return paths[0];
   }
@@ -61,7 +64,8 @@ async function startClient() {
 
   // determine compile commands
 
-  let path = Prefs.getConfig(Config.lspPath);
+  let goExec = findTool(Prefs.getConfig(Config.goExec) ?? "go")
+  let path = findTool(Prefs.getConfig(Config.lspPath) ?? "gopls");
   let args = [];
   let server = null;
 
@@ -74,7 +78,6 @@ async function startClient() {
       break;
     case flavorCustom:
       args = [];
-      path = path ?? findGopls();
       server = "gopls";
       break;
     default:
@@ -82,6 +85,10 @@ async function startClient() {
       return;
   }
 
+  if (!goExec) {
+    Messages.showNotice(Catalog.msgNoGo, "");
+    return;
+  }
   if (!path || !nova.fs.access(path, nova.fs.X_OK)) {
     if (flavor != flavorAuto) {
       // auto flavor does an update check
@@ -95,6 +102,17 @@ async function startClient() {
     path: path,
     args: args,
   };
+
+  // gopls relies upon the PATH to find the go executable. Determine
+  // if we need to modify the path to ensure the go specified in preferences
+  // is found first.
+  let goInPaths = Paths.findProgram(Paths.expandPath(), ["go"]);
+  if (goInPaths.length < 1 || goInPaths[0] !== goExec) {
+    serverOptions.env = {
+      PATH: [nova.path.dirname(goExec), nova.environment["PATH"]].join(":")
+    };
+  }
+
   let initOpts = {};
   if (Prefs.getConfig(Config.buildFlags)) {
     initOpts["gopls.build.buildFlags"] = Prefs.getConfig(Config.buildFlags);
@@ -182,24 +200,17 @@ function sendNotification(method, params) {
 }
 
 function watchConfigVarCb(name, cb) {
-  State.disposal.add(
-    nova.config.onDidChange(name, (nv, ov) => {
-      // this doesn't send an update a workspace override exists
-      if (nova.workspace.config.get(name) == null) {
-        if (nv != ov) {
-          cb(nv, ov);
-        }
-      }
-    })
-  );
-  State.disposal.add(
-    nova.workspace.config.onDidChange(name, (nv, ov) => {
-      // this always sends an update
-      if (nv != ov) {
-        cb(nv, ov);
-      }
-    })
-  );
+  let ov = Prefs.getConfig(name);
+  const watchFunc = function () {
+    const nv = Prefs.getConfig(name);
+    if (nv !== ov) {
+        let old = ov;
+        ov = nv;
+        cb(nv, old);
+    }
+  };
+  State.disposal.add(nova.config.onDidChange(name, watchFunc));
+  State.disposal.add(nova.workspace.config.onDidChange(name, watchFunc));
 }
 
 function onFlavorChanged(newV, oldV) {
@@ -211,13 +222,13 @@ function onFlavorChanged(newV, oldV) {
       nova.config.remove(Config.lspPath);
       break;
     case flavorCustom:
-      let gopls = findGopls();
+      let gopls = findTool(Prefs.getConfig(Config.lspPath) ?? "gopls");
       if (gopls != null) {
         nova.config.set(Config.lspPath, gopls);
       }
       break;
     case flavorNone:
-      nova.config.remove(cfgLspPath);
+      nova.config.remove(Config.lspPath);
       break;
   }
   restartClient();
@@ -226,6 +237,7 @@ function onFlavorChanged(newV, oldV) {
 function watchConfigRestart() {
   watchConfigVarCb(Config.lspFlavor, onFlavorChanged);
   watchConfigVarCb(Config.lspPath, restartClient);
+  watchConfigVarCb(Config.goExec, restartClient);
   watchConfigVarCb(Config.compileCommandsDir, restartClient);
 }
 
