@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="gomod">
+    <meta>
+        <name>Go.Mod</name>
+        <type>structured</type>
+        <preferred-file-extension>.mod</preferred-file-extension>
+    </meta>
+
+    <detectors>
+        <filename priority="1.0">go.mod</filename>
+    </detectors>
+
+    <indentation>
+        <increase>
+            <expression>\(</expression>
+        </increase>
+        <decrease>
+            <expression>\)</expression>
+        </decrease>
+    </indentation>
+
+    <comments>
+        <single>
+            <expression>//</expression>
+        </single>
+    </comments>
+
+    <brackets>
+        <pair open="(" close=")" />
+    </brackets>
+
+    <injection>
+        <expression>^(gomod|go.mod)$</expression>
+    </injection>
+
+    <tree-sitter language="gomod">
+        <highlights path="gomod-highlights.scm" />
+    </tree-sitter>
+</syntax>

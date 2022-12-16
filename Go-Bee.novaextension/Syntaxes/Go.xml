@@ -7,7 +7,6 @@
     </meta>
 
     <detectors>
-        <!-- what about go.mod? -->
         <extension priority="1.0">go</extension>
     </detectors>
 

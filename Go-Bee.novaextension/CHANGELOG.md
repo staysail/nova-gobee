@@ -1,3 +1,12 @@
+## Version 0.1.0
+
+Syntax support for go.mod (highlighting only)
+
+Activate if workspace contains go.mod.
+
+Better configuration support for finding go executable.
+(Contributed by John Fieber, @jfieber).
+
 ## Version 0.0.2
 
 Add tunables for gofumpt and local package formatting, as well as build flags.

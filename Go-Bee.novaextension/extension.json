@@ -3,7 +3,7 @@
   "name": "Go-Bee",
   "organization": "Staysail Systems",
   "description": "Go support",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "categories": [
     "commands",
     "languages",
@@ -84,12 +84,12 @@
       {
         "title": "Preferences",
         "command": "gobee.preferences",
-        "syntaxes": ["go"]
+        "syntaxes": ["go", "gomod"]
       },
       {
         "title": "Extension Preferences",
         "command": "gobee.extensionPreferences",
-        "syntaxes": ["go"]
+        "syntaxes": ["go", "gomod"]
       }
     ],
     "extensions": [
@@ -104,7 +104,7 @@
       {
         "title": "Restart Server",
         "command": "gobee.restartServer",
-        "syntaxes": ["go"]
+        "syntaxes": ["go", "gomod"]
       }
     ]
   },
@@ -248,5 +248,9 @@
     }
   ],
 
-  "activationEvents": ["onLanguage:go"]
+  "activationEvents": [
+    "onLanguage:go",
+    "onLanguage:gomod",
+    "onWorkspaceContains:go.mod"
+  ]
 }
