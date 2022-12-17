@@ -1,3 +1,8 @@
+## Version 0.8.0
+
+Improved display names for method symbols.
+This includes the receiver type name as part of the symbol's display name.
+
 ## Version 0.7.0
 
 Fix to correctly honor the configured path to the dlv debugger.

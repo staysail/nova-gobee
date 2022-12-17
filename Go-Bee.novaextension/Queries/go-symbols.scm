@@ -5,7 +5,10 @@
 ; with the receiver type name.  (Furthermore, do we want to also pick up the
 ; receiver name.)
 ((method_declaration
-	name: (field_identifier) @name) @subtree (#set! role method))
+	name: (field_identifier) @name) @subtree
+	@displayname.target (#set! displayname.query "go-method-display-name.scm")
+	(#set! role method)
+)
 (type_declaration (type_spec (type_identifier) @name (struct_type (#set! role struct)) @subtree))
 (type_declaration (type_spec (type_identifier) @name (interface_type (#set! role interface)) @subtree))
 (type_declaration (type_spec name: (type_identifier) @name (
