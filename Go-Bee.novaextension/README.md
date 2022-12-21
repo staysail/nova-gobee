@@ -1,8 +1,11 @@
+<img src="https://raw.githubusercontent.com/staysail/nova-gobee/main/go-logo.png" align="right" width="100" alt="[Logo]" />
+
 # Go-Bee&trade; - Go Extension for Nova
 
 ---
 
 **Go-Bee** (pronounced "go-bee", like the "goby" salt-water fish) provides rich support for Go development in Nova via the _gopls_ language server, and fast syntactic analysis thanks to [Tree-sitter][3].
+Debugging support is enabled via the _dlv_ (aka Delve) debugger.
 
 This extension requires Nova 10.0 or better, and because of at least one fixed bug, we
 highly recommend updating to Nova 10.4 or better.
@@ -22,6 +25,7 @@ highly recommend updating to Nova 10.4 or better.
 - Signature Assistance
 - Code Quality Hints
 - Code Actions
+- Debugging (local, remote, and post-mortem)
 
 ## 📸 Screenshots 📸
 
@@ -30,6 +34,7 @@ highly recommend updating to Nova 10.4 or better.
 ![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot3.png)
 ![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot4.png)
 ![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot5.png)
+![](https://raw.githubusercontent.com/staysail/nova-gobee/main/screenshot6.png)
 
 ## Why Another Go Extension?
 
@@ -51,18 +56,39 @@ This extension makes use of _gopls_, which is the "official" language server
 from the Go team. By default we will attempt to install it in the extension's
 private directory, as `gopls`.
 
+## 🐞 Debugging 🐞
+
+This extension also supports source code level debugging of both local and
+remote programs.
+
+Quick access (default) tasks are created to debug the current package or test
+suites in the current package. The former will only work if workspace directory
+contains a "main" package.
+
+Much more flexible configuration of debugging targets can be accessed using the
+**Tasks** feature in the **Project Settings** dialog.
+
+In this dialog you can create debug tasks which support both local and remote
+debugging, as well as post-mortem debugging using core files, adjusting the
+arguments and environment used when starting the debug target, as well as other
+options related to debugging.
+
+Debugging support is a new feature, and should be considered experimental.
+Feedback is appreciated!
+
 ## 🛡️ Security Considerations 🛡️
 
 This extension uses the network to check for the latest version of _gopls_ (the language
-server) using the GitHub releases API. It also will indirectly use the network when it
-tries to install this using the `go install` command.
+server) and _dlv_ (the debugger) using the GitHub releases API.
+It also will indirectly use the network when it
+tries to install these using the `go install` command.
 
-The _gopls_ server will be installed in a private directory by default, but it is possible
+The _gopls_ and _dlv_ programs will be installed in a private directory by default, but it is possible
 to configure a different location. In any event, we do execute that command for the
 language server, and the language server may itself perform additional actions -- see the
-source code for _gopls_ if you want to know more.
+source code for _gopls_ or _dlv_ if you want to know more.
 
-It is possible to disable the use of _gopls_, and instead rely only on the syntax
+It is possible to disable the use of _gopls_ and _dlv_, and instead rely only on the syntax
 features from Tree-sitter. That will disable much of the useful functionality, but
 enough remains (highlighting, local symbol resolution, folds, and indentation) to still
 be worthwhile.
@@ -72,8 +98,6 @@ be worthwhile.
 Tasks to build using go.
 
 Better support for go modules.
-
-Debugging via delve.
 
 Support for larger refactoring - such as package renaming.
 

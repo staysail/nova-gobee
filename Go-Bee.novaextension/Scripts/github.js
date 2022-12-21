@@ -6,16 +6,13 @@ const Messages = require("./messages.js");
 const Catalog = require("./catalog.js");
 const Cache = require("./cache.js");
 
-const repoUrl = "https://api.github.com/repos/golang/tools";
-const latestUrl = `${repoUrl}/releases/latest`;
-
 // we don't need to find an asset because we use go to download and build
 
 class GitHub {
   // latest returns a promise that resolves to a GitHub release object for language server.
   // It should be an object corresponding to a release.
   // Within the release may be an array of associated assets.
-  static latest(force) {
+  static latest(name, repo, force) {
     // This code has support for using caching, if Nova ever exposes ETags to
     // us, or if the Last-Modified header is present in GitHub (it isn't for
     // these requests for some reason, although the releases/latest header does
@@ -25,8 +22,8 @@ class GitHub {
     // We actually prefer it be done only manually.
 
     return Cache.fetch(
-      "latest_gopls",
-      latestUrl,
+      `latest_${name}`,
+      `https://api.github.com/repos/${repo}/releases/latest`,
       {
         headers: { Accept: "application/vnd.github+json" },
       },

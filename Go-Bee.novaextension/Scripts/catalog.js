@@ -27,10 +27,10 @@ const catalog = {
   msgRenameSymbol: "msgRenameSymbol",
   msgNewName: "msgNewName", // for renaming symbols
   msgCouldNotRenameSym: "msgCouldNotRenameSym",
-  msgNewLspTitle: "msgNewLspTitle",
-  msgNewLspBody: "msgNewLspBody",
-  msgMissingLspTitle: "msgMissingLspTitle",
-  msgMissingLspBody: "msgMissingLspBody",
+  msgNewComponentTitle: "msgNewComponentTitle",
+  msgNewComponentBody: "msgNewComponentBody",
+  msgMissingComponentTitle: "msgMissingComponentTitle",
+  msgMissingComponentBody: "msgMissingComponentBody",
   msgUpToDate: "msgUpToDate",
   msgInstall: "msgInstall",
   msgUpdate: "msgUpdate",
@@ -38,8 +38,8 @@ const catalog = {
   msgSearch: "msgSearch",
   msgRename: "msgRename",
   msgDownloadFailed: "msgDownloadFailed",
-  msgLspIsNotAutoTitle: "msgLspIsNotAutoTitle",
-  msgLspIsNotAutoBody: "msgLspIsNotAutoBody",
+  msgComponentIsNotAutoTitle: "msgComponentIsNotAutoTitle",
+  msgComponentIsNotAutoBody: "msgComponentIsNotAutoBody",
   msgReferencesFoundTitle: "msgReferencesFoundTitle",
   msgReferencesFoundBody: "msgReferencesFoundBody",
   msgSymbolsFoundTitle: "msgSymbolsFoundTitle",
@@ -48,7 +48,7 @@ const catalog = {
   msgSymbol: "msgSymbol",
   msgNeedGoTitle: "msgNeedGoTitle",
   msgNeedGoBody: "msgNeedGoBody",
-  msgLspUpdateFailed: "msgLspUpdateFailed",
+  msgComponentUpdateFailed: "msgComponentUpdateFailed",
 };
 
 // default English strings
@@ -73,21 +73,21 @@ values[catalog.msgSelectionNotRenameable] = "No renameable symbol at cursor";
 values[catalog.msgRenameSymbol] = "Rename symbol _OLD_SYMBOL_";
 values[catalog.msgNewName] = "New name";
 values[catalog.msgCouldNotRenameSym] = "Could not rename symbol";
-values[catalog.msgNewLspTitle] = "Update Available";
-values[catalog.msgNewLspBody] =
-  "An new language server (gopls _VERSION_) update is available. (You have _OLD_VERSION_.)";
-values[catalog.msgMissingLspTitle] = "Server Missing";
-values[catalog.msgMissingLspBody] =
-  "A language server is required for full functionality. Install gopls _VERSION_ now?";
-values[catalog.msgUpToDate] = "Language server is up to date.";
+values[catalog.msgNewComponentTitle] = "Update Available";
+values[catalog.msgNewComponentBody] =
+  "An updated external component (_PROG_ _VERSION_) is available. (You have _OLD_VERSION_.)";
+values[catalog.msgMissingComponentTitle] = "Component Missing";
+values[catalog.msgMissingComponentBody] =
+  "An external compnent is required for full functionality. Install _PROG_ _VERSION_ now?";
+values[catalog.msgUpToDate] = "Component _PROG_ is up to date.";
 values[catalog.msgInstall] = "Install";
 values[catalog.msgUpdate] = "Update";
 values[catalog.msgCancel] = "Cancel";
 values[catalog.msgSearch] = "Search";
 values[catalog.msgRename] = "Rename";
-values[catalog.msgLspIsNotAutoTitle] = "Language server not updateable";
-values[catalog.msgLspIsNotAutoBody] =
-  "Automatic updates are only supported when using LLVM clangd.";
+values[catalog.msgComponentIsNotAutoTitle] = "Component not updateable";
+values[catalog.msgComponentIsNotAutoBody] =
+  "Automatic updates are only supported when using automatic.";
 values[catalog.msgDownloadFailed] = "Download of asset failed.";
 values[catalog.msgReferencesFoundTitle] =
   "Found _COUNT_ References in _FILES_ Files";
@@ -100,7 +100,8 @@ values[catalog.msgSymbolsSearch] = "Search for symbol(s)";
 values[catalog.msgSymbol] = "Symbol";
 values[catalog.msgNeedGoTitle] = "Go not found";
 values[catalog.msgNeedGoBody] = "For full functionality, please install Go.";
-values[catalog.msgLspUpdateFailed] = "Failed to update or install gopls.";
+values[catalog.msgComponentUpdateFailed] =
+  "Failed to update or install _PROG_.";
 
 // verify that every entry in the catalog has a matching entry in values
 for (let name in catalog) {

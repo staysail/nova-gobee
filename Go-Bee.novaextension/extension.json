@@ -3,14 +3,15 @@
   "name": "Go-Bee",
   "organization": "Staysail Systems",
   "description": "Go support",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "categories": [
     "commands",
     "languages",
     "formatters",
     "completions",
     "issues",
-    "sidebars"
+    "sidebars",
+    "tasks"
   ],
   "license": "MIT",
   "repository": "https://github.com/staysail/nova-gobee",
@@ -25,6 +26,19 @@
     "filesystem": "readwrite",
     "requests": true
   },
+
+  "debugAdapters": {
+    "dlv": {
+      "name": "Go (delve)",
+      "image": "goby-small"
+    }
+  },
+
+  "breakpoints": [
+    {
+      "syntax": "go"
+    }
+  ],
 
   "commands": {
     "editor": [
@@ -152,6 +166,32 @@
       ]
     },
     {
+      "title": "Debugger",
+      "type": "section",
+      "children": [
+        {
+          "key": "gobee.dap.flavor",
+          "title": "Debugger to use",
+          "description": "Which language server to use",
+          "type": "enum",
+          "values": [
+            ["auto", "Delve (auto)"],
+            ["custom", "Custom"],
+            ["none", "None"]
+          ],
+          "radio": false,
+          "default": "auto"
+        },
+        {
+          "key": "gobee.dap.path",
+          "title": "Debugger Path",
+          "description": "Path to a custom debugger (Delve)",
+          "type": "path",
+          "placeholder": "/usr/local/bin/dlv"
+        }
+      ]
+    },
+    {
       "title": "Formatting",
       "type": "section",
       "children": [
@@ -248,6 +288,158 @@
     }
   ],
 
+  "taskTemplates": {
+    "localDebug": {
+      "name": "Go Debug",
+      "description": "Launch and debug a program locally",
+      "image": "goby-small",
+      "tasks": {
+        "run": {
+          "resolve": "dlv",
+          "data": { "type": "launch" }
+        }
+      },
+      "config": [
+        {
+          "key": "gobee.dap.mode",
+          "title": "Debug mode",
+          "type": "enum",
+          "values": [
+            ["debug", "Build and debug"],
+            ["test", "Debug test(s)"],
+            ["exec", "Debug pre-built binary"],
+            ["core", "Post-mortem debug (core file)"]
+          ],
+          "default": "debug"
+        },
+        {
+          "key": "gobee.dap.program",
+          "title": "Program",
+          "description": "Path to folder or executable to debug.  If blank assumes workspace folder.",
+          "type": "path",
+          "allowFolders": true,
+          "allowFiles": true,
+          "relative": true
+        },
+        {
+          "key": "gobee.dap.args",
+          "title": "Arguments",
+          "description": "Commmand line arguments for debugged program.",
+          "type": "stringArray"
+        },
+        {
+          "key": "gobee.dap.env",
+          "title": "Environment",
+          "description": "Environment variables for debugged program (name=var).",
+          "type": "stringArray"
+        },
+        {
+          "key": "gobee.dap.cwd",
+          "title": "Current Working Directory",
+          "description": "Current working directory for debug target.",
+          "type": "path",
+          "allowFiles": false,
+          "allowFolders": true
+        },
+        {
+          "key": "gobee.dap.buildFlags",
+          "title": "Build Flags",
+          "description": "Build flags when building target.",
+          "type": "string"
+        },
+        {
+          "key": "gobee.dap.coreFile",
+          "title": "Core File",
+          "description": "Core file to use when postmortem debugging.",
+          "type": "path"
+        },
+        {
+          "key": "gobee.dap.pathMappings",
+          "title": "Path Mappings",
+          "description": "Mappings between local and remote paths.  Entries formatted as 'local:remote'",
+          "type": "stringArray"
+        },
+        {
+          "key": "gobee.dap.showGlobals",
+          "title": "Show Global Variables",
+          "type": "boolean",
+          "description": "Show global package variables?",
+          "default": false
+        },
+        {
+          "key": "gobee.dap.showRegisters",
+          "title": "Show Registers",
+          "description": "Show registers in variable view?",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "key": "gobee.dap.hideSystemGoroutines",
+          "title": "Hide System GoRoutines",
+          "description": "Hide system go routines from stack view?",
+          "type": "boolean",
+          "default": false
+        }
+      ]
+    },
+    "remoteDebug": {
+      "name": "Go Remote Debug",
+      "description": "Attach to a remote debugger (dlv)",
+      "image": "goby-small",
+      "tasks": {
+        "run": {
+          "resolve": "dlv",
+          "data": { "type": "attach", "mode": "remote" }
+        }
+      },
+      "config": [
+        {
+          "key": "gobee.dap.host",
+          "title": "Host",
+          "description": "The hostname or IP address of a remote server where dlv is listening.",
+          "type": "string",
+          "placeholder": "localhost",
+          "default": "localhost"
+        },
+        {
+          "key": "gobee.dap.port",
+          "title": "Port",
+          "type": "number",
+          "description": "The TCP port number of a remote server where dlv is listening.",
+          "default": "34567",
+          "min": 1,
+          "max": 65535
+        },
+        {
+          "key": "gobee.dap.pathMappings",
+          "title": "Path Mappings",
+          "description": "Mappings between local and remote paths.  Entries formatted as 'local:remote'",
+          "type": "stringArray"
+        },
+        {
+          "key": "gobee.dap.showGlobals",
+          "title": "Show Global Variables",
+          "type": "boolean",
+          "description": "Show global package variables?",
+          "default": false
+        },
+        {
+          "key": "gobee.dap.showRegisters",
+          "title": "Show Registers",
+          "description": "Show registers in variable view?",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "key": "gobee.dap.hideSystemGoroutines",
+          "title": "Hide System GoRoutines",
+          "description": "Hide system go routines from stack view?",
+          "type": "boolean",
+          "default": false
+        }
+      ]
+    }
+  },
   "activationEvents": [
     "onLanguage:go",
     "onLanguage:gomod",

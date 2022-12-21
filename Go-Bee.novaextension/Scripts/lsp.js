@@ -64,7 +64,7 @@ async function startClient() {
 
   // determine compile commands
 
-  let goExec = findTool(Prefs.getConfig(Config.goExec) ?? "go")
+  let goExec = findTool(Prefs.getConfig(Config.goExec) ?? "go");
   let path = findTool(Prefs.getConfig(Config.lspPath) ?? "gopls");
   let args = [];
   let server = null;
@@ -73,7 +73,7 @@ async function startClient() {
     case flavorAuto:
       args = [];
       //let ver = Prefs.getConfig(Config.currentGoPls);
-      path = nova.path.join(nova.extension.globalStoragePath, `gopls`);
+      path = nova.path.join(nova.extension.globalStoragePath, "gopls");
       server = "gopls";
       break;
     case flavorCustom:
@@ -109,7 +109,7 @@ async function startClient() {
   let goInPaths = Paths.findProgram(Paths.expandPath(), ["go"]);
   if (goInPaths.length < 1 || goInPaths[0] !== goExec) {
     serverOptions.env = {
-      PATH: [nova.path.dirname(goExec), nova.environment["PATH"]].join(":")
+      PATH: [nova.path.dirname(goExec), nova.environment["PATH"]].join(":"),
     };
   }
 
@@ -204,9 +204,9 @@ function watchConfigVarCb(name, cb) {
   const watchFunc = function () {
     const nv = Prefs.getConfig(name);
     if (nv !== ov) {
-        let old = ov;
-        ov = nv;
-        cb(nv, old);
+      let old = ov;
+      ov = nv;
+      cb(nv, old);
     }
   };
   State.disposal.add(nova.config.onDidChange(name, watchFunc));

@@ -13,6 +13,7 @@ const Symbols = require("./symbols.js");
 const Rename = require("./rename.js");
 const Update = require("./update.js");
 const State = require("./state.js");
+const Dap = require("./dap.js");
 
 exports.activate = async function () {
   Prefs.register();
@@ -23,6 +24,7 @@ exports.activate = async function () {
   Rename.register();
   Lsp.register();
   Update.register();
+  Dap.register();
 
   // kick off signal to get everything running
   State.emitter.emit(State.events.onActivate);

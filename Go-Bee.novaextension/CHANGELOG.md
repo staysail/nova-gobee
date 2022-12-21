@@ -1,3 +1,8 @@
+## Version 0.5.0
+
+Initial support for debugging(!) with Delve.
+This includes both local and remote debugging over Delve's DAP support.
+
 ## Version 0.1.0
 
 Syntax support for go.mod (highlighting only)
