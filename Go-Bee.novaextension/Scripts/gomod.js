@@ -38,7 +38,6 @@ async function checkForGo() {
 
 async function mod_init(editor) {
   let doc = editor.document.path;
-  console.warn("DOC is", doc);
   if (!doc) {
     return;
   }
