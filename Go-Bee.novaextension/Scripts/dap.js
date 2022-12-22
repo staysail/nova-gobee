@@ -122,11 +122,11 @@ function provideTasks() {
 
   let pt = new Task("Debug Go Package");
   pt.setAction(Task.Run, new TaskResolvableAction({ data: { mode: "debug" } }));
-  pt.image = "goby-small";
+  pt.image = "go";
 
   let nt = new Task("Debug Go Test");
   nt.setAction(Task.Run, new TaskResolvableAction({ data: { mode: "test" } }));
-  nt.image = "goby-small";
+  nt.image = "go";
 
   return [pt, nt];
 }
@@ -140,7 +140,7 @@ function register() {
         resolveTaskAction: resolveTaskAction,
         provideTasks: provideTasks,
       },
-      { identifier: "dlv", name: "Delve" }
+      { identifier: "dlv", name: "Go (Delve)" }
     )
   );
 }

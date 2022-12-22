@@ -30,7 +30,7 @@
   "debugAdapters": {
     "dlv": {
       "name": "Go (delve)",
-      "image": "goby-small"
+      "image": "go"
     }
   },
 
@@ -292,7 +292,7 @@
     "localDebug": {
       "name": "Go Debug",
       "description": "Launch and debug a program locally",
-      "image": "goby-small",
+      "image": "go",
       "tasks": {
         "run": {
           "resolve": "dlv",
@@ -385,7 +385,7 @@
     "remoteDebug": {
       "name": "Go Remote Debug",
       "description": "Attach to a remote debugger (dlv)",
-      "image": "goby-small",
+      "image": "go",
       "tasks": {
         "run": {
           "resolve": "dlv",
