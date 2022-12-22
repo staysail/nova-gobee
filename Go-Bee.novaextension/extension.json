@@ -3,7 +3,7 @@
   "name": "Go-Bee",
   "organization": "Staysail Systems",
   "description": "Go support",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "categories": [
     "commands",
     "languages",

@@ -1,3 +1,7 @@
+## Version 0.5.2
+
+Only create default debug builds if go.mod is present.
+
 ## Version 0.5.1
 
 Improved indentation support.

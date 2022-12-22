@@ -120,15 +120,25 @@ function provideTasks() {
       break;
   }
 
-  let pt = new Task("Debug Go Package");
-  pt.setAction(Task.Run, new TaskResolvableAction({ data: { mode: "debug" } }));
-  pt.image = "go";
+  // we only offer to do go level projects if a go.mod file is present
+  if (nova.workspace.contains(nova.path.join(nova.workspace.path, "go.mod"))) {
+    let pt = new Task("Debug Go Package");
+    pt.setAction(
+      Task.Run,
+      new TaskResolvableAction({ data: { mode: "debug" } })
+    );
+    pt.image = "go";
 
-  let nt = new Task("Debug Go Test");
-  nt.setAction(Task.Run, new TaskResolvableAction({ data: { mode: "test" } }));
-  nt.image = "go";
+    let nt = new Task("Debug Go Test");
+    nt.setAction(
+      Task.Run,
+      new TaskResolvableAction({ data: { mode: "test" } })
+    );
+    nt.image = "go";
 
-  return [pt, nt];
+    return [pt, nt];
+  }
+  return [];
 }
 
 function register() {
