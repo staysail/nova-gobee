@@ -96,14 +96,26 @@
       },
       { "separator": true },
       {
+        "title": "Go Mod Init",
+        "command": "gobee.goModInit",
+        "filters": {
+          "syntaxes": ["go"]
+        }
+      },
+      { "separator": true },
+      {
         "title": "Preferences",
         "command": "gobee.preferences",
-        "syntaxes": ["go", "gomod"]
+        "filters": {
+          "syntaxes": ["go", "gomod"]
+        }
       },
       {
         "title": "Extension Preferences",
         "command": "gobee.extensionPreferences",
-        "syntaxes": ["go", "gomod"]
+        "filters": {
+          "syntaxes": ["go", "gomod"]
+        }
       }
     ],
     "extensions": [
@@ -118,7 +130,7 @@
       {
         "title": "Restart Server",
         "command": "gobee.restartServer",
-        "syntaxes": ["go", "gomod"]
+        "filters": { "syntaxes": ["go", "gomod"] }
       }
     ]
   },

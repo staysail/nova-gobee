@@ -14,6 +14,7 @@ const Rename = require("./rename.js");
 const Update = require("./update.js");
 const State = require("./state.js");
 const Dap = require("./dap.js");
+const GoMod = require("./gomod.js");
 
 exports.activate = async function () {
   Prefs.register();
@@ -25,6 +26,7 @@ exports.activate = async function () {
   Lsp.register();
   Update.register();
   Dap.register();
+  GoMod.register();
 
   // kick off signal to get everything running
   State.emitter.emit(State.events.onActivate);

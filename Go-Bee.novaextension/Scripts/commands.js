@@ -23,6 +23,8 @@ const keys = {
   showReferences: "gobee.showReferences",
   findSymbols: "gobee.findSymbols",
   showSymbols: "gobee.showSymbols",
+  goModInit: "gobee.goModInit",
+  goModTidy: "gobee.goModTidy",
 };
 
 module.exports = keys;

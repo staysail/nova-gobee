@@ -49,6 +49,10 @@ const catalog = {
   msgNeedGoTitle: "msgNeedGoTitle",
   msgNeedGoBody: "msgNeedGoBody",
   msgComponentUpdateFailed: "msgComponentUpdateFailed",
+  msgGoModInit: "msgGoModInit",
+  msgPackageName: "msgPackageName",
+  msgInitMod: "msgInitMod",
+  msgModExists: "msgModExists",
 };
 
 // default English strings
@@ -102,6 +106,12 @@ values[catalog.msgNeedGoTitle] = "Go not found";
 values[catalog.msgNeedGoBody] = "For full functionality, please install Go.";
 values[catalog.msgComponentUpdateFailed] =
   "Failed to update or install _PROG_.";
+
+values[catalog.msgGoModInit] =
+  "Enter the fully qualified module name to create, such as 'github.com/example/package'";
+values[catalog.msgPackageName] = "Module name";
+values[catalog.msgInitMod] = "Initialize";
+values[catalog.msgModExists] = "Go module (go.mod) already exists.";
 
 // verify that every entry in the catalog has a matching entry in values
 for (let name in catalog) {
