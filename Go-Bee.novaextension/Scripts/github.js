@@ -2,8 +2,6 @@
 //
 // Distributed under the terms of the MIT license.
 
-const Messages = require("./messages.js");
-const Catalog = require("./catalog.js");
 const Cache = require("./cache.js");
 
 // we don't need to find an asset because we use go to download and build

@@ -14,7 +14,6 @@
 
 const delay = require("./delay.js");
 
-let port = undefined;
 async function free_port() {
   // pretty sure there is a better to do this, but... meh.
   this.port = undefined;
