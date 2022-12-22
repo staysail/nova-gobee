@@ -1,3 +1,7 @@
+## Version 0.5.1
+
+Improved indentation support.
+
 ## Version 0.5.0
 
 Initial support for debugging(!) with Delve.

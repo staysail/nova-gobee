@@ -12,10 +12,10 @@
 
     <indentation>
         <increase>
-            <expression>\{</expression>
+            <expression>(\{[^}\"']*$)|(\[[^\]\"']*$)|(\([^)\"']*$)</expression>
         </increase>
         <decrease>
-            <expression>\}</expression>
+            <expression>^\s*(\s*/\*.*\*/\s*)*[\}\]\)\\]</expression>
         </decrease>
     </indentation>
 
