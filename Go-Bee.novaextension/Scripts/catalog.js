@@ -53,6 +53,7 @@ const catalog = {
   msgPackageName: "msgPackageName",
   msgInitMod: "msgInitMod",
   msgModExists: "msgModExists",
+  msgModMissing: "msgModMissing",
 };
 
 // default English strings
@@ -112,6 +113,7 @@ values[catalog.msgGoModInit] =
 values[catalog.msgPackageName] = "Module name";
 values[catalog.msgInitMod] = "Initialize";
 values[catalog.msgModExists] = "Go module (go.mod) already exists.";
+values[catalog.msgModMissing] = "No go.mod file.";
 
 // verify that every entry in the catalog has a matching entry in values
 for (let name in catalog) {

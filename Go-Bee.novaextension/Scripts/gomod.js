@@ -36,6 +36,29 @@ async function checkForGo() {
   return goexec;
 }
 
+async function mod_tidy(editor) {
+  let doc = editor.document.path;
+  if (!doc) {
+    return;
+  }
+  let dir = nova.path.dirname(doc);
+  if (!nova.workspace.contains(nova.path.join(dir, "go.mod"))) {
+    Messages.showWarning(Catalog.msgModMissing);
+    return;
+  }
+  let goexec = await checkForGo();
+
+  if (!goexec) {
+    return;
+  }
+
+  let p = new Process(goexec, {
+    args: ["mod", "tidy"],
+    cwd: dir,
+  });
+  p.start();
+}
+
 async function mod_init(editor) {
   let doc = editor.document.path;
   if (!doc) {
@@ -86,6 +109,7 @@ async function mod_init(editor) {
 
 function register() {
   State.registerCommand(Commands.goModInit, mod_init);
+  State.registerCommand(Commands.goModTidy, mod_tidy);
 }
 
 module.exports = {

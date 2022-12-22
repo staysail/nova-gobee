@@ -102,6 +102,13 @@
           "syntaxes": ["go"]
         }
       },
+      {
+        "title": "Go Mod Tidy",
+        "command": "gobee.goModTidy",
+        "filters": {
+          "syntaxes": ["gomod"]
+        }
+      },
       { "separator": true },
       {
         "title": "Preferences",
