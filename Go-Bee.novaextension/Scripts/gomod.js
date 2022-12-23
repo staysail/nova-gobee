@@ -7,34 +7,9 @@ const State = require("./state.js");
 const Catalog = require("./catalog.js");
 const Commands = require("./commands.js");
 const Messages = require("./messages.js");
-const Paths = require("./paths.js");
-const Prefs = require("./prefs.js");
-const Config = require("./config.js");
+const GoLang = require("./golang.js");
 
 // Various stuff related to go modules.
-
-async function checkForGo() {
-  let goexec = Prefs.getConfig(Config.goExec);
-
-  if (goexec == null) {
-    let dirs = Paths.expandPath();
-    dirs = dirs.concat([
-      "/usr/local/go/bin",
-      "/opt/homebrew/bin",
-      "/usr/local/bin",
-    ]);
-    let res = Paths.findProgram(dirs, ["go"]);
-    if (res && res.length > 0) {
-      goexec = res[0];
-    }
-  }
-
-  if (!goexec || !nova.fs.access(goexec, nova.fs.X_OK)) {
-    Messages.showNotice(Catalog.msgNeedGoTitle, Catalog.msgNeedGoBody);
-    return null;
-  }
-  return goexec;
-}
 
 async function mod_tidy(editor) {
   let doc = editor.document.path;
@@ -46,7 +21,7 @@ async function mod_tidy(editor) {
     Messages.showWarning(Catalog.msgModMissing);
     return;
   }
-  let goexec = await checkForGo();
+  let goexec = await GoLang.checkForGo();
 
   if (!goexec) {
     return;
@@ -69,7 +44,7 @@ async function mod_init(editor) {
     Messages.showWarning(Catalog.msgModExists);
     return;
   }
-  let goexec = await checkForGo();
+  let goexec = await GoLang.checkForGo();
 
   if (!goexec) {
     return;

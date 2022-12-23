@@ -10,7 +10,7 @@ const Messages = require("./messages.js");
 const Catalog = require("./catalog.js");
 const State = require("./state.js");
 const Prefs = require("./prefs.js");
-const Paths = require("./paths.js");
+const GoLang = require("./golang.js");
 
 const extPath = nova.extension.globalStoragePath;
 
@@ -35,37 +35,14 @@ const progs = {
 };
 
 async function checkForUpdate(force = false) {
-  return Promise.all(
+  return Promise.all([
     checkForUpdateProg(progs.dlv, force),
-    checkForUpdateProg(progs.gopls, force)
-  );
-}
-
-async function checkForGo() {
-  let goexec = Prefs.getConfig(Config.goExec);
-
-  if (goexec == null) {
-    let dirs = Paths.expandPath();
-    dirs = dirs.concat([
-      "/usr/local/go/bin",
-      "/opt/homebrew/bin",
-      "/usr/local/bin",
-    ]);
-    let res = Paths.findProgram(dirs, ["go"]);
-    if (res && res.length > 0) {
-      goexec = res[0];
-    }
-  }
-
-  if (!goexec || !nova.fs.access(goexec, nova.fs.X_OK)) {
-    Messages.showNotice(Catalog.msgNeedGoTitle, Catalog.msgNeedGoBody);
-    return null;
-  }
-  return goexec;
+    checkForUpdateProg(progs.gopls, force),
+  ]);
 }
 
 async function checkForUpdateProg(prog, force = false) {
-  let goexec = await checkForGo();
+  let goexec = await GoLang.checkForGo();
   if (!goexec) {
     return false;
   }
@@ -150,8 +127,11 @@ async function checkForUpdateProg(prog, force = false) {
 
 //nova.commands.register(Commands.checkForUpdate, async function (_) {
 
-async function checkForUpdateCmd() {
-  if (Prefs.getConfig(Config.lspFlavor) != "auto") {
+async function checkForUpdateCmd(_) {
+  if (
+    Prefs.getConfig(Config.lspFlavor) != "auto" &&
+    Prefs.getConfig(Config.dapFlavor) != "auto"
+  ) {
     Messages.showNotice(
       Catalog.msgComponentIsNotAutoTitle,
       Catalog.msgComponentIsNotAutoBody
@@ -159,9 +139,9 @@ async function checkForUpdateCmd() {
     return;
   }
   try {
-    await checkForUpdate(true);
+    checkForUpdate(true);
   } catch (error) {
-    Messages.showError(error.message);
+    Messages.showError(error.message ?? error);
   }
 }
 

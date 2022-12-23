@@ -1,6 +1,10 @@
-## Version 0.5.2
+## Version 0.6.0
+
+Support for go mod init, and go mod tidy.
 
 Only create default debug builds if go.mod is present.
+
+Fix error dialog when manually checking for updates.
 
 ## Version 0.5.1
 
