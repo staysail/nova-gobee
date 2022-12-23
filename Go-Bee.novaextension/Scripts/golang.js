@@ -3,7 +3,6 @@
 //
 // Distributed under the terms of the MIT license.
 
-const State = require("./state.js");
 const Catalog = require("./catalog.js");
 const Messages = require("./messages.js");
 const Paths = require("./paths.js");
