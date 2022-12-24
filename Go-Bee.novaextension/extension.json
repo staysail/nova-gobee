@@ -191,7 +191,7 @@
         {
           "key": "gobee.dap.flavor",
           "title": "Debugger to use",
-          "description": "Which language server to use",
+          "description": "Which debugger to use",
           "type": "enum",
           "values": [
             ["auto", "Delve (auto)"],
