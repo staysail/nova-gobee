@@ -116,7 +116,7 @@ function provideTasks() {
       dlvPath = nova.path.join(nova.extension.globalStoragePath, "dlv");
       break;
     default:
-      dlvPath = findTool(Prefs.getConfig(Config.lspPath) ?? "dlv");
+      dlvPath = findTool(Prefs.getConfig(Config.dapPath) ?? "dlv");
       break;
   }
 
