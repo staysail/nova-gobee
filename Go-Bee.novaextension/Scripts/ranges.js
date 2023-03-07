@@ -11,6 +11,13 @@ class Ranges {
     const lines = document
       .getTextInRange(new Range(0, document.length))
       .split(document.eol);
+    // If the document doesn't end with an newline, an LSP range
+    // to append something to the end might have a range like:
+    //   {"range":{"start":{"line":100,"character":0},"end":{"line":100,"character":0}}
+    // while the lines array from nova has only lines 0-99.
+    if (range.start.line == lines.length) {
+      return new Range(document.length, document.length);
+    }
     for (let line = 0; line < lines.length; line++) {
       if (range.start.line == line) {
         start = pos + range.start.character;
