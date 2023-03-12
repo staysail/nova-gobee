@@ -1,3 +1,10 @@
+## Version 0.7.0
+
+Fix to correctly honor the configured path to the dlv debugger.
+
+Fix for potentially catastrophic bug when formatting a file that is missing
+a trailing newline. (Contributed by John Fieber, @jfieber).
+
 ## Version 0.6.0
 
 Support for go mod init, and go mod tidy.
