@@ -9,6 +9,8 @@ Add recognition of `clear`, `min`, and `max` as built in functions.
 Note that very few themes seem to handle the `identifier.core` property specially, so
 you might not notice a difference.
 
+Use identifier.core instead of keyword.construct for built in times.
+
 ## Version 0.8.0
 
 Improved display names for method symbols.

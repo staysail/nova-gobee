@@ -24,11 +24,9 @@
 
 ; Identifiers
 
-((type_identifier) @keyword.construct (#match? @keyword.construct "^(uint|int)(8|16|32|64)?$"))
-((type_identifier) @keyword.construct
-  (#match? @keyword.construct "^(uintptr|bool|byte|rune|string|float32|float64|complex64|complex128|comparable|any)$"))
-((type_identifier) @keyword.construct (#eq? @keyword.construct "string"))
-;((type_identifier) @keyword.construct (#eq? @keyword.construct "int"))
+((type_identifier) @identifier.core (#match? @identifier.core "^(uint|int)(8|16|32|64)?$"))
+((type_identifier) @identifier.core
+  (#match? @identifier.core "^(uintptr|bool|byte|rune|string|float32|float64|complex64|complex128|comparable|any)$"))
 (type_identifier) @identifier.type
 (field_identifier) @identifier.property
 (identifier) @identifier.variable
