@@ -19,6 +19,10 @@
 (method_declaration
   name: (field_identifier) @identifier.method)
 
+(type_spec name: (type_identifier) @identifier.type.struct (struct_type))
+
+(type_spec name: (type_identifier) @identifier.type.protocol (interface_type))
+
 ; we don't have a selector for labels
 (label_name) @identifier.constant
 

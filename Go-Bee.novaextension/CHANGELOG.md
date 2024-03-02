@@ -11,6 +11,10 @@ you might not notice a difference.
 
 Use identifier.core instead of keyword.construct for built in times.
 
+Interface names marked as identifier.type.protocol at declaration point
+
+Struct names marked as identifier.type.struct at declaration point
+
 ## Version 0.8.0
 
 Improved display names for method symbols.
