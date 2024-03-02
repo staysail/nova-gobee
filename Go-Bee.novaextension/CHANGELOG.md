@@ -1,3 +1,14 @@
+## Version 0.9.0
+
+Updated Tree Sitter grammars for Go and Go Mod.
+
+Add recognition of `bool` and `comparable` as a built in (core) types.
+
+Add recognition of `clear`, `min`, and `max` as built in functions.
+
+Note that very few themes seem to handle the `identifier.core` property specially, so
+you might not notice a difference.
+
 ## Version 0.8.0
 
 Improved display names for method symbols.

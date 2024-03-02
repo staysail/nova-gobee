@@ -1,8 +1,8 @@
 ; Function calls
 
 (call_expression
-  function: (identifier) @identifier.function.core
-  (.match? @identifier.function.core "^(append|cap|close|complex|copy|delete|imag|len|make|new|panic|print|println|real|recover)$"))
+  function: (identifier) @identifier.core
+  (.match? @identifier.core "^(append|cap|clear|close|complex|copy|delete|imag|len|make|max|min|new|panic|print|println|real|recover)$"))
 
 (call_expression
   function: (identifier) @identifier.function)
@@ -26,7 +26,7 @@
 
 ((type_identifier) @keyword.construct (#match? @keyword.construct "^(uint|int)(8|16|32|64)?$"))
 ((type_identifier) @keyword.construct
-  (#match? @keyword.construct "^(uintptr|byte|rune|string|float32|float64|complex64|complex128|any)$"))
+  (#match? @keyword.construct "^(uintptr|bool|byte|rune|string|float32|float64|complex64|complex128|comparable|any)$"))
 ((type_identifier) @keyword.construct (#eq? @keyword.construct "string"))
 ;((type_identifier) @keyword.construct (#eq? @keyword.construct "int"))
 (type_identifier) @identifier.type
