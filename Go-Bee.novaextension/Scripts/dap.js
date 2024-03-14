@@ -75,8 +75,8 @@ async function resolveTaskAction(context) {
       if (config?.get("gobee.dap.env")) {
         debugArgs.env = {};
         for (item of config.get("gobee.dap.env")) {
-          let m = item.split("=", 1);
-          debugArgs.env[m[0]] = item.slice(m[0].length);
+          let m = item.split("=", 2);
+          debugArgs.env[m[0]] = m[1];
         }
       }
     }
