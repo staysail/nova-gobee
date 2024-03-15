@@ -1,3 +1,7 @@
+## Version 0.9.1
+
+Fix for debugger environment variables (contributed by Maximilian Gaß <mxey@mxey.net>).
+
 ## Version 0.9.0
 
 Updated Tree Sitter grammars for Go and Go Mod.
